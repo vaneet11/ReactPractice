@@ -1,29 +1,44 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Row, ToggleButton } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../Layout/Loader'
 import { BsCart4 } from "react-icons/bs";
 
 export default function Products() {
   const [productList, setProductList] = useState('')
   const [categories, setCategories] = useState({})
-  const [isLoader, setLoader] = useState(true)
+  const [isLoader, setLoader] = useState()
+  const [dataValue, setDataValue] = useState(-1)
 
   const navigate = useNavigate()
 
+  const params = useParams()
+  console.log(params, "params")
+
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
-      .then((res) => {
-        setProductList(res.data)
-        setLoader(false)
-      })
+    setLoader(true)
+    if (params.category) {
+      axios.get(`https://fakestoreapi.com/products/category/${params.category}`)
+        .then((res) => {
+          setProductList(res.data)
+          setLoader(false)
+        })
+    }
+    else {
+      axios.get('https://fakestoreapi.com/products')
+        .then((res) => {
+          setProductList(res.data)
+          setLoader(false)
+        })
+
+    }
 
     axios.get('https://fakestoreapi.com/products/categories')
       .then((res) => {
         setCategories(res.data)
       })
-  }, [])
+  }, [dataValue])
 
   const handleCart = (item, id) => {
 
@@ -76,6 +91,11 @@ export default function Products() {
                   type="radio"
                   variant="outline-info"
                   name="radio"
+                  active={ind === dataValue}
+                  onClick={() => {
+                    setDataValue(ind)
+                    navigate(`/products/category/${item}`)
+                  }}
 
                 >
                   {item}

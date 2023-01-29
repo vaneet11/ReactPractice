@@ -3,9 +3,12 @@ import { Form, Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { debounce } from "lodash";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
+import { login } from '../Redux/Actions/Actions';
 
 export default function Login() {
     const dispatch = useDispatch()
+
+
     const [formValues, setFormValues] = useState({
         username: '',
         password: '',
@@ -15,7 +18,7 @@ export default function Login() {
         e.preventDefault()
         console.log(formValues, "formvalues")
         localStorage.setItem('token', JSON.stringify(formValues))
-
+        dispatch(login(formValues))
         navigate('/dashboard')
     }
 

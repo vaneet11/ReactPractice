@@ -40,7 +40,8 @@ const router = [
         element: <ProductLayout />,
         children: [
             { path: '/products', element: <Products /> },
-            { path: '/products/:id', element: <ProductDetail /> },
+            { path: '/products/:id', exact: true, element: <ProductDetail /> },
+            { path: '/products/category/:category', element: <Products /> },
             { path: '/products/cart', element: <Cart /> }
         ]
     }

@@ -1,10 +1,10 @@
 import { Login } from "../Constants/Constants"
 
-export const login = async (dispatch) => {
-    return () => {
+export const login = (values) => {
+    return (dispatch) => {
         dispatch({
             type: Login,
-            payload: 'login'
+            payload: values
         })
     }
 }
