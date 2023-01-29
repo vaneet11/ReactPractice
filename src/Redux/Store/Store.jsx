@@ -1,6 +1,7 @@
 import { applyMiddleware, compose, configureStore } from '@reduxjs/toolkit'
-import RootReducer from '../../../../form/src/Redux/Reducer/RootReducer';
 import thunk from "redux-thunk"
+import rootReducers from '../Reducer/RootReducers';
+import { UserReducer } from '../Reducer/UserReducer';
 
-const composeEnhancer = window.__REDUX_DEVTOOLS - EXTENSION_COMPOSE__ || compose;
-const store = configureStore(RootReducer, composeEnhancer(applyMiddleware(thunk)))
+const composeEnhancer = window.__REDUX_DEVTOOLSEXTENSION_COMPOSE__ || compose;
+export const store = configureStore(UserReducer)
