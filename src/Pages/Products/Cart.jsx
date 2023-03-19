@@ -11,9 +11,25 @@ export default function Cart() {
     setTimeout(() => {
         setLoader(false)
     }, 2000)
+
+    const handleQuantity = (id, operator, quantity) => {
+        const cartItemIndex = cartItem.findIndex(item => item.id === id)
+        if (operator === '+') {
+            cartItem[cartItemIndex].quantity = cartItem[cartItemIndex].quantity + 1
+        }
+        else if (operator === '-') {
+            cartItem[cartItemIndex].quantity = cartItem[cartItemIndex].quantity - 1
+        }
+        else {
+            alert('invalid')
+        }
+
+        localStorage.setItem('Cart', JSON.stringify(cartItem))
+        Window.refresh()
+
+    }
     return (
         <Container >
-
             <div className='p-5'>
                 <Row>
                     <h4 className='fw-bold mx-auto'>My Cart</h4>
@@ -43,7 +59,7 @@ export default function Cart() {
                                                 <div className='d-flex justify-content-evenly'>
                                                     <Button
                                                         variant="outline-info"
-                                                        onClick={() => item.quantity - 1}
+                                                        onClick={() => handleQuantity(item.id, '-', item.quantity)}
                                                     >
                                                         <span className='fw-bold'> - </span>
                                                     </Button>
@@ -51,7 +67,7 @@ export default function Cart() {
                                                     <span className='align-middle' >{item.quantity}</span>
                                                     <Button
                                                         variant="outline-info"
-                                                        onClick={() => item.quantity + 1}
+                                                        onClick={() => handleQuantity(item.id, '+', item.quantity)}
                                                     >
                                                         <span className="fw-bold"> + </span>
                                                     </Button>

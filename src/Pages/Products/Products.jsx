@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Container, Row, ToggleButton } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../Layout/Loader'
 import { BsCart4 } from "react-icons/bs";
@@ -84,7 +84,6 @@ export default function Products() {
             {categories &&
               categories.length > 0 &&
               categories.map((item, ind) => (
-
                 <Button
                   key={ind}
                   className='mx-2'
