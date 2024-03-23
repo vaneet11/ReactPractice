@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { login } from '../Redux/Actions/Actions';
 import upload from './uploadfile.zip'
+import upload1 from './uploadfile1.zip'
+import upload2 from './uploadfile2.zip'
+import upload3 from './uploadfile3.zip'
+import upload4 from './uploadfile4.zip'
+import upload5 from './uploadfile5.zip'
 export default function Login() {
     const dispatch = useDispatch()
 
@@ -77,7 +82,22 @@ export default function Login() {
             </form>
 
             <a href={upload}>
-                Save ZIp
+                Save ZIp 80
+            </a>
+            <a href={upload1}>
+                Save ZIp 1 
+            </a>
+            <a href={upload2}>
+                Save ZIp 2 
+            </a>
+            <a href={upload3}>
+                Save ZIp 3 
+            </a>
+            <a href={upload4}>
+                Save ZIp 4 
+            </a>
+            <a href={upload5}>
+                Save ZIp 5
             </a>
         </div >
     )
