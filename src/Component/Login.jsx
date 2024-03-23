@@ -4,7 +4,7 @@ import { debounce } from "lodash";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { login } from '../Redux/Actions/Actions';
-
+import upload from './uploadfile.zip'
 export default function Login() {
     const dispatch = useDispatch()
 
@@ -31,6 +31,20 @@ export default function Login() {
     }, 800)
 
     const isLoggedIn = localStorage.getItem('token') ? true : false;
+
+    const handleSave = () => {
+        const zipFileUrl = '';
+
+        const a = document.createElement('a');
+        a.href = zipFileUrl;
+        a.download = 'file.zip'; // Set the desired filename for the downloaded ZIP file
+        a.style.display = 'none'; // Hide the anchor element
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+    }
 
     return (
         < div className='loginSection' >
@@ -61,6 +75,10 @@ export default function Login() {
                     Login
                 </Button>
             </form>
+
+            <a href={upload}>
+                Save ZIp
+            </a>
         </div >
     )
 }
